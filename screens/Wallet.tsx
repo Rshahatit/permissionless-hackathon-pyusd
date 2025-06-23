@@ -4,6 +4,7 @@ import { styles } from '../style/stylesheet'
 import WalletComponent from '../components/wallet'
 import Screen from '../lib/screens'
 import Chain from '../lib/chains'
+import PortalButton from '../components/shared/button'
 
 interface WalletProps {
   address: string
@@ -17,6 +18,11 @@ const Wallet: FC<WalletProps> = ({ address, chain, setScreen }) => {
       <Text style={styles.screenTitle}>Wallet</Text>
 
       <WalletComponent address={address} chain={chain} setScreen={setScreen} />
+      <PortalButton
+        title="Manage Subscriptions"
+        onPress={() => setScreen(Screen.Subscriptions)}
+        style={{ marginTop: 10 }}
+      />
     </View>
   )
 }

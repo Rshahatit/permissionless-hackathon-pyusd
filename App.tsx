@@ -12,12 +12,14 @@ import Chain from './lib/chains'
 import ChainPickerComponent from './components/shared/chain-picker'
 import { createPortalInstance } from './lib/portal'
 import Wallet from './screens/Wallet'
+import Subscriptions from './screens/Subscriptions' // Add this import
 
 function App(): JSX.Element {
   const [address, setAddress] = useState<string>('')
   const [chain, setChain] = useState<Chain>(Chain.Devnet)
   const [portal, setPortal] = useState<Portal | null>(null)
   const [screen, setScreen] = useState<Screen>(Screen.Home)
+  const [pyusdBalance, setPyusdBalance] = useState<number>(125.5) // Add balance state
 
   useEffect(() => {
     if (!portal) {
@@ -62,6 +64,14 @@ function App(): JSX.Element {
                     address={address}
                     chain={chain}
                     setScreen={setScreen}
+                  />
+                )}
+                {screen === Screen.Subscriptions && (
+                  <Subscriptions
+                    address={address}
+                    chain={chain}
+                    pyusdBalance={pyusdBalance}
+                    setPyusdBalance={setPyusdBalance}
                   />
                 )}
               </View>
